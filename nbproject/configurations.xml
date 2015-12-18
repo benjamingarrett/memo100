@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="80">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>../hashing/MurmurHash32.h</itemPath>
+      <itemPath>../hashing/MurmurHash64A.h</itemPath>
+      <itemPath>../memoization/memo.h</itemPath>
+      <itemPath>memo_command_interpreter.h</itemPath>
+      <itemPath>../random/random.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>../hashing/MurmurHash32.c</itemPath>
+      <itemPath>../hashing/MurmurHash64A.c</itemPath>
+      <itemPath>main.c</itemPath>
+      <itemPath>../memoization/memo.c</itemPath>
+      <itemPath>memo_command_interpreter.c</itemPath>
+      <itemPath>../random/random.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f4"
+                     displayName="cuckoo_hashing_test_3_byte_key_9_byte_value"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/cuckoo_hashing_test_3_byte_key_9_byte_value.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2"
+                     displayName="cuckoo_hashing_test_fill_table"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/cuckoo_hashing_test_fill_table.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f7"
+                     displayName="generate_artificial_operation_sequence_feedback"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/generate_artificial_operation_sequence_feedback.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f6"
+                     displayName="generate_operation_sequence_without_feedback"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/generate_operation_sequence_without_feedback.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f5"
+                     displayName="hashing_test_read_write_delete"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/hashing_test_read_write_delete.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f3"
+                     displayName="linear_probe_test_3_byte_key_9_byte_value"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/linear_probe_test_3_byte_key_9_byte_value.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1"
+                     displayName="linear_probe_test_fill_table"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/linear_probe_test_fill_table.c</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+      </compileType>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f4">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f4</output>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f5">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f5</output>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f6">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f6</output>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f7">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f7</output>
+        </linkerTool>
+      </folder>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+    </conf>
+  </confs>
+</configurationDescriptor>
