@@ -86,11 +86,13 @@ void initialize(int argc, char ** argv){
                 value_length = (uint64_t)atoi(argv[++g]);
             }
         } else if(!strcmp(argv[g], "-u")){
-            cuckoo_k = (uint8_t)atoi(argv[++g]);
-            printf("cuckoo_k %d\n", cuckoo_k);
-            if(cuckoo_k != 2 && cuckoo_k != 3 && cuckoo_k != 4){
-                printf("Cuckoo_k must be either 2, 3, or 4. Default is 2\n");
-                cuckoo_k = 2;
+            if(g+1 < argc){
+                cuckoo_k = (uint8_t)atoi(argv[++g]);
+                printf("cuckoo_k %d\n", cuckoo_k);
+                if(cuckoo_k != 2 && cuckoo_k != 3 && cuckoo_k != 4){
+                    printf("Cuckoo_k must be either 2, 3, or 4. Default is 2\n");
+                    cuckoo_k = 2;
+                }
             }
         }
     }
