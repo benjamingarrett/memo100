@@ -78,7 +78,7 @@ void initialize(int argc, char ** argv){
                 if(t > 0){
                     key_length = t;
                 } else {
-                    printf("Key length must be positive. Default key length = %d\n", key_length);
+                    printf("Key length must be positive. Default key length = %d\n", (int)key_length);
                 }
             }
         } else if(!strcmp(argv[g], "-v")){
@@ -100,7 +100,7 @@ void initialize(int argc, char ** argv){
     if(queue_size >= table_size){
         table_size = default_table_size;
         queue_size = default_queue_size;
-        printf("Queue size must be smaller than table_size. Reverting to defaults: table size = %d, queue size = %d\n",
+        printf("Queue size must be smaller than table_size. Reverting to defaults: table size = %ld, queue size = %ld\n",
                 table_size, queue_size);
     }
     
@@ -141,9 +141,9 @@ void memo_command_interpreter(int argc, char** argv){
             key = (int64_t *)&r;
             lp = (int64_t *)cache_read(key);
             if(*lp == NON__VALUE){
-                printf("Value %d not found\n", r);
+                printf("Value %ld not found\n", r);
             } else {
-                printf("Value %d was found\n", *lp);
+                printf("Value %ld was found\n", *lp);
             }
         }
         if(!strcmp(token[0], "put")){
