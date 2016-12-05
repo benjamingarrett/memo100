@@ -173,7 +173,7 @@ void memo_command_interpreter(int argc, char** argv){
                     printf("Value %d not found\n", r);
                 } else {
                     printf("Value %d was found, attempting deletion\n", r);
-                    if( delete(key) == 0 ){
+                    if( cache_delete(key) == 0 ){
                         printf("Deletion of %d succeeded.\n", r);
                     } else {
                         printf("Attempted deletion of %d failed\n", r);
