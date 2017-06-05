@@ -49,13 +49,6 @@ void initialize(int argc, char ** argv){
         } else if(!strcmp(argv[g], "-t")){
             if(g+1 < argc){
                 table_size = (int64_t)atoi(argv[++g]);
-                if(table_size < 4){
-                    table_size = 4;
-                    printf("Minimum table size is 4\n");
-/*
-                    table_size = 2<<(k-1);
-*/
-                }
             }
         } else if(!strcmp(argv[g], "-c")){
             if(g+1 < argc){
@@ -149,10 +142,10 @@ void memo_command_interpreter(int argc, char** argv){
         if(!strcmp(token[0], "put")){
             if(n==1){
                 r = rand_in_range(0, 10);
-                printf("put without second argument, random value %d\n", r);
+                printf("put without second argument, random value %ld\n", r);
             } else {
                 r = (int64_t)atoi(token[1]);
-                printf("put second argument %d\n", r);
+                printf("put second argument %ld\n", r);
             }
             key = (int64_t *)&r;
             lp = (int64_t *)cache_read(key);
@@ -161,7 +154,7 @@ void memo_command_interpreter(int argc, char** argv){
                 lp = (int64_t *)cache_write(key);
                 *lp = r;
             } else {
-                printf("Value %d already in cache.\n", *lp);
+                printf("Value %ld already in cache.\n", *lp);
             }
         }
         if(!strcmp(token[0], "del")){
@@ -170,13 +163,13 @@ void memo_command_interpreter(int argc, char** argv){
                 key = (int64_t *)&r;
                 lp = (int64_t *)cache_read(key);
                 if(*lp == NON__VALUE){
-                    printf("Value %d not found\n", r);
+                    printf("Value %ld not found\n", r);
                 } else {
-                    printf("Value %d was found, attempting deletion\n", r);
+                    printf("Value %ld was found, attempting deletion\n", r);
                     if( cache_delete(key) == 0 ){
-                        printf("Deletion of %d succeeded.\n", r);
+                        printf("Deletion of %ld succeeded.\n", r);
                     } else {
-                        printf("Attempted deletion of %d failed\n", r);
+                        printf("Attempted deletion of %ld failed\n", r);
                     }
                 }
             } else {

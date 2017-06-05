@@ -10,19 +10,20 @@
 #include <stdlib.h>
 #include "../../random/random.h"
 
-/*
-#define RUN_TEST  
-*/
 
-void test1() {
+#define RUN_TEST  
+
+
+void test1(int num_operations, int max_key) {
     
-    uint64_t g, num_operations, max_key, operation, key;
+    uint64_t g, operation, key;
     FILE * fp;
+    char fname[200];
     
     printf("generate_operation_sequence_without_feedback\n");
-    fp = fopen("operation_sequence_without_feedback","w");
-    num_operations = 10000;
-    max_key = 160;
+    sprintf(fname, "../misc_phd/input/operation_sequences/without_feedback/%d/operation_sequence_without_feedback-%d-%d", 
+            num_operations, num_operations, max_key);
+    fp = fopen(fname,"w");
     fprintf(fp, "%d\n", num_operations);
     fprintf(fp, "%d\n", max_key);
     for(g=0; g<num_operations; g++){
@@ -37,7 +38,8 @@ int main(int argc, char** argv) {
 
     #ifdef RUN_TEST
         printf("%%TEST_STARTED%% test1 (generate_operation_sequence_without_feedback)\n");
-        test1();
+        test1(100000,40000);
+        test1(100000,80000);
         printf("%%TEST_FINISHED%% time=0 test1 (generate_operation_sequence_without_feedback) \n");
     #endif
     return (EXIT_SUCCESS);

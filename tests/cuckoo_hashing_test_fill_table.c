@@ -9,9 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define SHOW_PROGRESS  
 /*
 #define RUN_TEST  
-#define SHOW_PROGRESS  
 */
 
 /*

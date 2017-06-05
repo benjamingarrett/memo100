@@ -19,10 +19,19 @@
 #define FAILURE 0
 #define SUCCESS 1
 
+#define LINEAR_PROBE 0
+#define LINEAR_PROBE_WITH_DELETIONS 1
+#define CUCKOO 2
+
+#define SEQUENCE_0 0
+#define SEQUENCE_1 1
+#define SEQUENCE_2 2
+#define SEQUENCE_3 3
+
 uint64_t NON_VALUE = -1;
 uint64_t NON_POSITION = -1;
 
-void test1() {
+void test1(int caching_method, int operation_sequence) {
     
     uint64_t g, h, * key, num_operations, max_key, capacity, max_load, num_trials, num_anomalies;
     int * operation, * status, * result, type;
@@ -34,7 +43,20 @@ void test1() {
     printf("hashing_test_read_write_delete\n");
     
     /* read operations */
-    fp = fopen("../operation_sequences/operation_sequence_with_feedback","r");
+    switch(operation_sequence){
+        case SEQUENCE_0:
+            fp = fopen("../misc_phd/input/operation_sequences/operation_sequence_with_feedback-10000-200-16-16","r");
+            break;
+        case SEQUENCE_1:
+            fp = fopen("../misc_phd/input/operation_sequences/operation_sequence_with_feedback-10000-200-128-117","r");
+            break;
+        case SEQUENCE_2:
+            fp = fopen("../misc_phd/input/operation_sequences/operation_sequence_with_feedback-10000-200-256-117","r");
+            break;
+        case SEQUENCE_3:
+            fp = fopen("../misc_phd/input/operation_sequences/operation_sequence_with_feedback-100000-300-256-176","r");
+            break;
+    }
     fscanf(fp, "%d\n", &type);
     if(type == 0){
         printf("Artificial feedback detected\n");
@@ -64,9 +86,20 @@ void test1() {
     initialize_memoization("MurmurHash32", capacity, &NON_VALUE, 
             &NON_POSITION, 4, 8, "linear_probe_with_deletions", "hashing", 0, 2);
 */
-    
-    initialize_memoization("MurmurHash32", capacity, &NON_VALUE, 
-            &NON_POSITION, 4, 8, "cuckoo", "hashing", 0, 2);
+    switch(caching_method){
+        case LINEAR_PROBE:
+            initialize_memoization("MurmurHash32", capacity, &NON_VALUE, 
+                    &NON_POSITION, 4, 8, "linear_probe", "hashing", 0, 2);
+            break;
+        case LINEAR_PROBE_WITH_DELETIONS:
+            initialize_memoization("MurmurHash32", capacity, &NON_VALUE, 
+                    &NON_POSITION, 4, 8, "linear_probe_with_deletions", "hashing", 0, 2);
+            break;
+        case CUCKOO:
+            initialize_memoization("MurmurHash32", capacity, &NON_VALUE, 
+                    &NON_POSITION, 4, 8, "cuckoo", "hashing", 0, 2);
+            break;
+    }
     
     #ifdef VIEW_PROGRESS
         printf("Starting trials\n");
@@ -122,7 +155,7 @@ void test1() {
                 if(val == NON_VALUE){
                     result[g] = FAILURE;
                 } else {
-                    if( delete(KEY) == 0 ){
+                    if( cache_delete(KEY) == 0 ){
                         result[g] = SUCCESS;
                     } else {
                         result[g] = FAILURE;
@@ -159,7 +192,15 @@ int main(int argc, char** argv) {
 
     #ifdef RUN_TEST
         printf("%%TEST_STARTED%% (hashing_test_read_write_delete)\n");
-        test1();
+//        test1(LINEAR_PROBE);
+//        test1(LINEAR_PROBE_WITH_DELETIONS, SEQUENCE_0);
+//        test1(LINEAR_PROBE_WITH_DELETIONS, SEQUENCE_1);
+//        test1(LINEAR_PROBE_WITH_DELETIONS, SEQUENCE_2);
+//        test1(LINEAR_PROBE_WITH_DELETIONS, SEQUENCE_3);
+//        test1(CUCKOO, SEQUENCE_0);
+        test1(CUCKOO, SEQUENCE_1);
+//        test1(CUCKOO, SEQUENCE_2);
+//        test1(CUCKOO, SEQUENCE_3);
         printf("%%TEST_FINISHED%% (hashing_test_read_write_delete)\n");
     #endif
     return (EXIT_SUCCESS);
