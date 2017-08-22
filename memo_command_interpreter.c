@@ -178,6 +178,6 @@ void memo_command_interpreter(int argc, char** argv){
         }
         
         view_hashtable();
-        view_queue();
+        view_lru_queue();
     }
 }
