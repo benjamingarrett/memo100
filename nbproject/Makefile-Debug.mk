@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/c56916c5/MurmurHash32.o \
 	${OBJECTDIR}/_ext/c56916c5/MurmurHash64A.o \
 	${OBJECTDIR}/_ext/554cfc1b/memo.o \
+  ${OBJECTDIR}/_ext/554cfc1c/memo_long_int.o \
 	${OBJECTDIR}/_ext/cd19c7f2/random.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/memo_command_interpreter.o
@@ -103,6 +104,11 @@ ${OBJECTDIR}/_ext/554cfc1b/memo.o: ../memoization/memo.c
 	${MKDIR} -p ${OBJECTDIR}/_ext/554cfc1b
 	${RM} "$@.d"
 	$(COMPILE.c) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/554cfc1b/memo.o ../memoization/memo.c
+
+${OBJECTDIR}/_ext/554cfc1c/memo_long_int.o: ../memoization/memo_long_int.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/554cfc1c
+	${RM} "$@.d"
+	$(COMPILE.c) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/554cfc1c/memo_long_int.o ../memoization/memo_long_int.c
 
 ${OBJECTDIR}/_ext/cd19c7f2/random.o: ../random/random.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/cd19c7f2
@@ -234,6 +240,19 @@ ${OBJECTDIR}/_ext/554cfc1b/memo_nomain.o: ${OBJECTDIR}/_ext/554cfc1b/memo.o ../m
 	    $(COMPILE.c) -g -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/554cfc1b/memo_nomain.o ../memoization/memo.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/554cfc1b/memo.o ${OBJECTDIR}/_ext/554cfc1b/memo_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/554cfc1c/memo_long_int_nomain.o: ${OBJECTDIR}/_ext/554cfc1c/memo_long_int.o ../memoization/memo_long_int.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/554cfc1c
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/554cfc1c/memo_long_int.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -g -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/554cfc1c/memo_long_int_nomain.o ../memoization/memo_long_int.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/554cfc1c/memo_long_int.o ${OBJECTDIR}/_ext/554cfc1c/memo_long_int_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/cd19c7f2/random_nomain.o: ${OBJECTDIR}/_ext/cd19c7f2/random.o ../random/random.c 
