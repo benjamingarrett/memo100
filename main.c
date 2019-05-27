@@ -9,11 +9,7 @@
 #include <stdlib.h>
 #include "memo_command_interpreter.h"
 
-/*
- * 
- */
 int main(int argc, char** argv) {
-
   memo_command_interpreter(argc, argv);
   return (EXIT_SUCCESS);
 }

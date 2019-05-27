@@ -12,10 +12,6 @@
 extern "C" {
 #endif
 
-  #include <stdlib.h>
-  #include <string.h>
-  #include "../memoization/memo_long_int.h"
-  #include "../random/random.h"
   void memo_command_interpreter(int argc, char** argv);
 
 #ifdef __cplusplus
