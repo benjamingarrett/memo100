@@ -11,11 +11,9 @@ const char * DEL = "del";
 const char * EXIT = "exit";
 const char * PROMPT = "> ";
 
-void memo_command_interpreter(int argc, char** argv) {
-
+void memo_command_interpreter(int argc, char** argv){
   char cmd[200], *t, token[20][100];
-  int64_t k, v, *r, num_args;
-
+  int64_t g,k,v,*r,num_args;
   initialize_long_int_cache(argc, argv);
   printf("commands (get, put, del)\n");
   while(1){
@@ -27,7 +25,7 @@ void memo_command_interpreter(int argc, char** argv) {
       strcpy(token[num_args++], t);
       t = strtok(NULL, " \n");
     }
-    for(int64_t g = 0; g < num_args; g++){
+    for(g = 0; g < num_args; g++){
       printf("%ld: <<%s>>\n", g, token[g]);
     }
     if(num_args < 0){
