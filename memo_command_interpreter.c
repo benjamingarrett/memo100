@@ -1,21 +1,24 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "../memoization/memo_long_int.h"
 #include "../random/random.h"
 #include "memo_command_interpreter.h"
 
+
 char RANDOM_VALUES;
-const char * GET = "get";
-const char * PUT = "put";
-const char * DEL = "del";
-const char * EXIT = "exit";
+const char * GET = "0";
+const char * PUT = "1";
+const char * DEL = "2";
+const char * EXIT = "q";
 const char * PROMPT = "> ";
+
 
 void memo_command_interpreter(int argc, char** argv){
   char cmd[200], *t, token[20][100];
   int64_t g,k,v,*r,num_args;
   initialize_long_int_cache(argc, argv);
-  printf("commands (get, put, del)\n");
+  printf("commands (get=0, put=1, del=2, exit=q)\n");
   while(1){
     printf("%s", PROMPT);
     fgets(cmd, 200, stdin);
@@ -60,12 +63,10 @@ void memo_command_interpreter(int argc, char** argv){
       } else {
         v = (int64_t)atoi(token[1]);
       }
-      printf("using val -->%ld<-- -->%ld<--\n", &v, v);
-      r = (int64_t *) cache_read_long_int(&k);
+      printf("using val -->%ld<-- -->%ld<--\n", k, v);
+      r = (int64_t *) cache_write_long_int(&k, &v);
       if (r == NULL) {
-        cache_write_long_int(&k, &v);
-      } else {
-        printf("Value %ld already found for key %ld.\n", *r, k);
+        printf("Value already found for key %ld.\n", k);
       }
     }
     else if( ! strcmp(token[0], DEL)){
@@ -89,7 +90,7 @@ void memo_command_interpreter(int argc, char** argv){
       exit(1);
     }
     view_hashtable_long_int();
-    view_lru_queue();
-    view_lru_queue_logical();
+    //view_lru_queue();
+    //view_lru_queue_logical();
   }
 }
